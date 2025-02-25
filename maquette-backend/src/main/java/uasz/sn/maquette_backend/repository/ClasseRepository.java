@@ -1,4 +1,7 @@
 package uasz.sn.maquette_backend.repository;
 
-public interface ClasseRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import uasz.sn.maquette_backend.modele.Classe;
+
+public interface ClasseRepository extends JpaRepository<Classe, Long> {
 }
