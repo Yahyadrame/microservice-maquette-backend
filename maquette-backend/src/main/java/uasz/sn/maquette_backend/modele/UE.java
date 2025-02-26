@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -28,5 +29,6 @@ public class UE {
     private Utilisateur utilisateur;
 
     @OneToMany(mappedBy = "ue")
-    private Collection<EC> ecs;
+    private List<EC> ecs;
+
 }

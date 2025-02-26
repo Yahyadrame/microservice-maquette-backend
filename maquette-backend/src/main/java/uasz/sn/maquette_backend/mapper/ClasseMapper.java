@@ -1,6 +1,5 @@
 package uasz.sn.maquette_backend.mapper;
 
-
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -24,10 +23,14 @@ public interface ClasseMapper {
     Classe toEntity(ClasseDTO classeDTO);
 
     // Nouvelle méthode pour mettre à jour une entité existante
-    @Mapping(target = "id", ignore = true) // Empêche la modification de l'ID
     void updateEntity(ClasseDTO classeDTO, @MappingTarget Classe classe);
 
     default List<Long> mapMaquettesToIds(List<Maquette> maquettes) {
-        return maquettes != null ? maquettes.stream().map(Maquette::getId).collect(Collectors.toList()) : null;
+        if (maquettes == null) {
+            return List.of(); // Retourne une liste vide si maquettes est null
+        }
+        return maquettes.stream()
+                .map(Maquette::getId) // Utilise la méthode getId() de Maquette
+                .collect(Collectors.toList());
     }
 }
