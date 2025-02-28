@@ -15,4 +15,5 @@ public class ECDTO {
     private int coefficient;
     private String description;
     private Long ueId; // Référence à l'UE
+    private String ueNom; // Nom de l'ue
 }

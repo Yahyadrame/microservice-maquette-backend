@@ -16,13 +16,18 @@ import org.mapstruct.MappingTarget;
 public interface ClasseMapper {
     ClasseMapper INSTANCE = Mappers.getMapper(ClasseMapper.class);
 
+    @Mapping(source = "formation.id", target = "formationId") // Mapper l'ID de la formation
+    @Mapping(source = "formation.nom", target = "formationNom") // Mapper le nom de la formation
     @Mapping(target = "maquettesIds", expression = "java(mapMaquettesToIds(classe.getMaquettes()))")
     ClasseDTO toDto(Classe classe);
 
     @Mapping(target = "maquettes", ignore = true)
+    @Mapping(source = "formationId", target = "formation.id") // Mapper l'ID de la formation vers l'entité
     Classe toEntity(ClasseDTO classeDTO);
 
-    // Nouvelle méthode pour mettre à jour une entité existante
+    // Méthode pour mettre à jour une entité existante
+    @Mapping(target = "maquettes", ignore = true)
+    @Mapping(source = "formationId", target = "formation.id") // Mapper l'ID de la formation vers l'entité
     void updateEntity(ClasseDTO classeDTO, @MappingTarget Classe classe);
 
     default List<Long> mapMaquettesToIds(List<Maquette> maquettes) {

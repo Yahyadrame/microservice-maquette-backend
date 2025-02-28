@@ -8,9 +8,9 @@ import uasz.sn.maquette_backend.dto.UEDTO;
 import uasz.sn.maquette_backend.service.UEService;
 
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/api/ues")
+@CrossOrigin(origins = "http://localhost:3000") // Si le frontend tourne sur un autre port
 public class UEController {
 
     @Autowired

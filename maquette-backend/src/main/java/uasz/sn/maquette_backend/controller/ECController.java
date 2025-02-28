@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ecs")
+@CrossOrigin(origins = "http://localhost:3000") // Si le frontend tourne sur un autre port
 public class ECController {
 
     @Autowired
