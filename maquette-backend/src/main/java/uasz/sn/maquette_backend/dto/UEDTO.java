@@ -15,4 +15,5 @@ public class UEDTO {
     private Date dateCreation;
     private Long utilisateurId; // Référence à l'utilisateur
     private List<Long> ecsIds; // Liste des IDs des ECs associés
+    private List<ECDTO> ecs; // Liste des ECs associés à l'UE
 }

@@ -15,5 +15,6 @@ public class ClasseDTO {
     private boolean actif;
     private boolean archive;
     private Long formationId; // Référence à la formation
+    private String formationNom; // Nom de la formation
     private List<Long> maquettesIds; // Liste des IDs des maquettes associées
 }
