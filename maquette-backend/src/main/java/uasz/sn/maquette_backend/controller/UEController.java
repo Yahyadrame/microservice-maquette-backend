@@ -8,7 +8,7 @@ import uasz.sn.maquette_backend.dto.UEDTO;
 import uasz.sn.maquette_backend.service.UEService;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/api/ues")
 public class UEController {

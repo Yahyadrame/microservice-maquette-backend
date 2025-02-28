@@ -14,12 +14,15 @@ public class MaquetteBackendApplication {
 		SpringApplication.run(MaquetteBackendApplication.class, args);
 	}
 
+	/*
 	@Bean
 	public CommandLineRunner initUtilisateurs(UtilisateurRepository utilisateurRepository) {
 		return args -> {
 			utilisateurRepository.save(new Utilisateur(1L, "Alice", "alice@example.com"));
 			utilisateurRepository.save(new Utilisateur(2L, "Bob", "bob@example.com"));
 		};
-	}
+		}
+	 */
+
 
 }
