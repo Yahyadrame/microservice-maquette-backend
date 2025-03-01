@@ -40,11 +40,17 @@ public class ClasseController {
         return ResponseEntity.ok(classe);
     }
 
-    @GetMapping
+   /* @GetMapping
     public ResponseEntity<List<ClasseDTO>> listerClasses() {
         List<ClasseDTO> classes = classeService.listerClasses();
         return ResponseEntity.ok(classes);
-    }
+    }*/
+   @GetMapping("/formation/{formationId}")
+   public ResponseEntity<List<ClasseDTO>> listerClassesParFormation(@PathVariable Long formationId) {
+       List<ClasseDTO> classes = classeService.listerClassesParFormation(formationId);
+       return ResponseEntity.ok(classes);
+   }
+
 
     @PostMapping("/{id}/activer-desactiver")
     public ResponseEntity<Void> activerOuDesactiverClasse(@PathVariable Long id) {

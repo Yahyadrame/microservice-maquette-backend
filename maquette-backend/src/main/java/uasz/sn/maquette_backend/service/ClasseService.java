@@ -13,4 +13,6 @@ public interface ClasseService {
     List<ClasseDTO> listerClasses();
     void activerOuDesactiverClasse(Long id);
     void archiverOuDesarchiverClasse(Long id);
+    //pour renvoyer les classe d'une formation
+    List<ClasseDTO> listerClassesParFormation(Long formationId);
 }

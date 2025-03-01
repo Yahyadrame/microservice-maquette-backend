@@ -89,4 +89,28 @@ public class ClasseServiceImpl implements ClasseService {
         classe.setArchive(!classe.isArchive());
         classeRepository.save(classe);
     }
+
+    //pour trouver les classe d'une formation
+    // Method to list classes by formation ID
+    public List<ClasseDTO> listerClassesParFormation(Long formationId) {
+        // Fetch classes from the database by formation ID
+        List<Classe> classeList = classeRepository.findByFormationId(formationId);
+        // Convert the Classe entities to ClasseDTOs and return
+        return classeList.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private ClasseDTO convertToDTO(Classe classe) {
+        ClasseDTO dto = new ClasseDTO();
+        dto.setId(classe.getId());
+        dto.setNom(classe.getNom());
+        dto.setAnnee(classe.getAnnee());
+        dto.setActif(classe.getFormation().isActif());
+        dto.setArchive(classe.getFormation().isArchive());
+        dto.setSemestres(classe.getSemestres());
+        dto.setDescription(classe.getDescription());
+        // Add other necessary properties
+        return dto;
+    }
 }
