@@ -14,6 +14,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000") // Si le frontend tourne sur un autre port
 public class EnseignementController {
 
+
     @Autowired
     private EnseignementService enseignementService;
 

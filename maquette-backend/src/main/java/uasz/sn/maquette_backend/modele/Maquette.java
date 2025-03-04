@@ -27,9 +27,11 @@ public class Maquette {
     @JoinColumn(name = "classe_id", nullable = false)
     private Classe classe; // Relation avec la classe
 
+
     @ManyToOne
     @JoinColumn(name = "formation_id", nullable = false)
     private Formation formation; // Relation avec la formation
+
 
     private boolean actif = true; // Par défaut, actif
     private boolean archive = false; // Par défaut, non archivé

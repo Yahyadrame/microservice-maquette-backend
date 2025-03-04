@@ -1,6 +1,8 @@
 package uasz.sn.maquette_backend.service;
 
 
+
+
 import uasz.sn.maquette_backend.dto.EnseignementDTO;
 
 import java.util.List;
@@ -12,4 +14,5 @@ public interface EnseignementService {
     EnseignementDTO rechercherEnseignement(Long id);
     List<EnseignementDTO> listerEnseignements();
     void validerEnseignement(Long id);
+
 }
