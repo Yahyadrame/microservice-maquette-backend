@@ -28,6 +28,7 @@ public interface ClasseMapper {
     // Méthode pour mettre à jour une entité existante
     @Mapping(target = "maquettes", ignore = true)
     @Mapping(source = "formationId", target = "formation.id") // Mapper l'ID de la formation vers l'entité
+    @Mapping(target = "id", ignore = true) // Ignorer l'ID lors de la conversion vers l'entité
     void updateEntity(ClasseDTO classeDTO, @MappingTarget Classe classe);
 
     default List<Long> mapMaquettesToIds(List<Maquette> maquettes) {
