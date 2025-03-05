@@ -47,6 +47,8 @@ public class MaquetteServiceImpl implements MaquetteService {
         List<UE> ues = ueRepository.findAllById(maquetteDTO.getUesIds());
         maquette.setUes(ues);
 
+
+
         maquette = maquetteRepository.save(maquette);
         return MaquetteMapper.INSTANCE.toDto(maquette);
     }

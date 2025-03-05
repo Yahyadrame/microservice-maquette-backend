@@ -25,6 +25,9 @@ public class UE {
     private int coefficient;
     private Date dateCreation;
 
+    private boolean actif = true; // Formation active par défaut
+    private boolean archive = false; // Formation archivée (non active)
+
     @ManyToOne
     private Utilisateur utilisateur;
 

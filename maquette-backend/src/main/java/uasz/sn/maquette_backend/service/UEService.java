@@ -10,4 +10,7 @@ public interface UEService {
     void supprimerUE(Long id);
     UEDTO rechercherUE(Long id);
     List<UEDTO> listerUEs();
+    //activer archiver
+    void activerOuDesactiverUe(Long id);
+    void archiverOuDesarchiverUe(Long id);
 }

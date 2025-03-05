@@ -33,6 +33,7 @@ public interface MaquetteMapper {
     @Mapping(target = "classe", ignore = true)
     @Mapping(target = "formation", ignore = true)
     @Mapping(target = "ues", ignore = true)
+    @Mapping(target = "id", ignore = true) // Ignorer l'ID lors de la conversion vers l'entité
     void updateEntity(MaquetteDTO maquetteDTO, @MappingTarget Maquette maquette);
 
     default List<UEDTO> mapUEsToDTOs(List<UE> ues) {

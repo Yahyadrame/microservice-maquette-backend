@@ -45,4 +45,18 @@ public class UEController {
         List<UEDTO> ues = ueService.listerUEs();
         return ResponseEntity.ok(ues);
     }
+
+
+    //archiver et activer
+    @PostMapping("/{id}/activer")
+    public ResponseEntity<Void> activerOuDesactiverUe(@PathVariable Long id) {
+        ueService.activerOuDesactiverUe(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/archiver")
+    public ResponseEntity<Void> archiverOuDesarchiverUe(@PathVariable Long id) {
+        ueService.archiverOuDesarchiverUe(id);
+        return ResponseEntity.noContent().build();
+    }
 }

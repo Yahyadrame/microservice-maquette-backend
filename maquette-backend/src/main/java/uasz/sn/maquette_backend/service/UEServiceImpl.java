@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uasz.sn.maquette_backend.dto.UEDTO;
 import uasz.sn.maquette_backend.mapper.UEMapper;
+import uasz.sn.maquette_backend.modele.Formation;
 import uasz.sn.maquette_backend.modele.UE;
 import uasz.sn.maquette_backend.repository.UERepository;
 
@@ -51,5 +52,22 @@ public class UEServiceImpl implements UEService {
         return ueRepository.findAll().stream()
                 .map(UEMapper.INSTANCE::toDto)
                 .collect(Collectors.toList());
+    }
+
+    //archiver activer
+    @Override
+    public void activerOuDesactiverUe(Long id) {
+        UE ue = ueRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("UE non trouvée"));
+        ue.setActif(!ue.isActif());
+        ueRepository.save(ue);
+    }
+
+    @Override
+    public void archiverOuDesarchiverUe(Long id) {
+        UE ue = ueRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("UE non trouvée"));
+        ue.setArchive(!ue.isArchive());
+        ueRepository.save(ue);
     }
 }
