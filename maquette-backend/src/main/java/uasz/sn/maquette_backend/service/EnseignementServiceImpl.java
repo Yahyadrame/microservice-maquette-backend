@@ -13,6 +13,9 @@ import uasz.sn.maquette_backend.repository.ECRepository;
 import uasz.sn.maquette_backend.repository.EnseignementRepository;
 import uasz.sn.maquette_backend.repository.FormationRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class EnseignementServiceImpl implements EnseignementService {
 
@@ -27,6 +30,10 @@ public class EnseignementServiceImpl implements EnseignementService {
 
     @Autowired
     private ECRepository ecRepository; // Ajout du repository pour Formation
+
+    @Autowired
+    private EnseignementMapper enseignementMapper;
+
 
 
     @Override
@@ -68,5 +75,13 @@ public class EnseignementServiceImpl implements EnseignementService {
 
         // Retourner le DTO
         return EnseignementMapper.INSTANCE.toDto(enseignement);
+    }
+
+    @Override
+    public List<EnseignementDTO> getAllEnseignements() {
+        List<Enseignement> enseignements = enseignementRepository.findAll();
+        return enseignements.stream()
+                .map(enseignementMapper::toDto)
+                .collect(Collectors.toList());
     }
 }
