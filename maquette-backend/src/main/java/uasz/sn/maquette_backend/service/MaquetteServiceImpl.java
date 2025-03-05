@@ -51,16 +51,39 @@ public class MaquetteServiceImpl implements MaquetteService {
 
         maquette = maquetteRepository.save(maquette);
 
-        // Créer les enseignements pour chaque UE
+        // Créer les enseignements pour chaque UE et EC
         for (UE ue : ues) {
             for (EC ec : ue.getEcs()) {
-                EnseignementDTO enseignementDTO = new EnseignementDTO();
-                enseignementDTO.setEcId(ec.getId());
-                enseignementDTO.setType("CM"); // Par défaut, vous pouvez ajuster cela
-                enseignementDTO.setClasseId(classe.getId());
-                enseignementDTO.setSemestres(maquetteDTO.getSemestres());
-                enseignementDTO.setFormationId(formation.getId());
-                enseignementService.creerEnseignement(enseignementDTO);
+                // Vérifier les heures de CM, TD et TP pour créer les enseignements correspondants
+                if (ec.getCm() > 0) {
+                    EnseignementDTO enseignementCM = new EnseignementDTO();
+                    enseignementCM.setEcId(ec.getId());
+                    enseignementCM.setType("CM");
+                    enseignementCM.setClasseId(classe.getId());
+                    enseignementCM.setSemestres(maquetteDTO.getSemestres());
+                    enseignementCM.setFormationId(formation.getId());
+                    enseignementService.creerEnseignement(enseignementCM);
+                }
+
+                if (ec.getTd() > 0) {
+                    EnseignementDTO enseignementTD = new EnseignementDTO();
+                    enseignementTD.setEcId(ec.getId());
+                    enseignementTD.setType("TD");
+                    enseignementTD.setClasseId(classe.getId());
+                    enseignementTD.setSemestres(maquetteDTO.getSemestres());
+                    enseignementTD.setFormationId(formation.getId());
+                    enseignementService.creerEnseignement(enseignementTD);
+                }
+
+                if (ec.getTp() > 0) {
+                    EnseignementDTO enseignementTP = new EnseignementDTO();
+                    enseignementTP.setEcId(ec.getId());
+                    enseignementTP.setType("TP");
+                    enseignementTP.setClasseId(classe.getId());
+                    enseignementTP.setSemestres(maquetteDTO.getSemestres());
+                    enseignementTP.setFormationId(formation.getId());
+                    enseignementService.creerEnseignement(enseignementTP);
+                }
             }
         }
 
