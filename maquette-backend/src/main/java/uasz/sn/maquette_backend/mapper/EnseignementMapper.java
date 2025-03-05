@@ -6,7 +6,7 @@ import org.mapstruct.factory.Mappers;
 import uasz.sn.maquette_backend.dto.EnseignementDTO;
 import uasz.sn.maquette_backend.modele.Enseignement;
 
-@Mapper
+@Mapper(componentModel = "spring") // Ajoutez componentModel = "spring" pour que MapStruct génère un bean Spring
 public interface EnseignementMapper {
     EnseignementMapper INSTANCE = Mappers.getMapper(EnseignementMapper.class);
 
