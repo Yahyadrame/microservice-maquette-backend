@@ -34,7 +34,5 @@ public class Enseignement {
     private Formation formation; // Assurez-vous que c'est bien Formation et non Classe
 
     // Ajoutez cette méthode si elle n'existe pas
-    public Formation getFormation() {
-        return formation;
-    }
+
 }
