@@ -8,7 +8,7 @@ import uasz.sn.maquette_backend.service.EnseignementService;
 
 @RestController
 @RequestMapping("/api/enseignements")
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "http://localhost:3000")
 
 public class EnseignementController {
 
