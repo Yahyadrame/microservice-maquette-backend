@@ -33,7 +33,7 @@ public class Enseignement {
 
     @ManyToOne
     @JoinColumn(name = "formation_id", nullable = false)
-    private Classe formation;
+    private Formation formation;
 
 
 }
