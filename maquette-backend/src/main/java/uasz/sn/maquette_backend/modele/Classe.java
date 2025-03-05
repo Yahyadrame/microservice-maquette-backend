@@ -37,10 +37,9 @@ public class Classe {
     @JoinColumn(name = "formation_id", nullable = false)
     private Formation formation; // Formation associée à la classe
 
-    @OneToMany
-    @JoinColumn(name = "enseignement_id", nullable = false)
-    private Enseignement enseignement ;
-
+    @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<Enseignement> enseignements;
 
     @OneToMany(mappedBy = "classe", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude

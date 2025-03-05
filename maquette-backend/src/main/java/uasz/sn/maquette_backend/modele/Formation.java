@@ -42,8 +42,7 @@ public class Formation {
     private List<Maquette> maquettes; // Liste des maquettes associées à cette formation
 
 
-    @OneToMany
-    @JoinColumn(name = "enseignement_id", nullable = false)
-    private Enseignement enseignement ;
-
+    @OneToMany(mappedBy = "formation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<Enseignement> enseignements;
 }
