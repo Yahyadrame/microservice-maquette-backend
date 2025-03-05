@@ -2,12 +2,10 @@ package uasz.sn.maquette_backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uasz.sn.maquette_backend.dto.EnseignementDTO;
 import uasz.sn.maquette_backend.dto.MaquetteDTO;
 import uasz.sn.maquette_backend.mapper.MaquetteMapper;
-import uasz.sn.maquette_backend.modele.Classe;
-import uasz.sn.maquette_backend.modele.Formation;
-import uasz.sn.maquette_backend.modele.Maquette;
-import uasz.sn.maquette_backend.modele.UE;
+import uasz.sn.maquette_backend.modele.*;
 import uasz.sn.maquette_backend.repository.ClasseRepository;
 import uasz.sn.maquette_backend.repository.FormationRepository;
 import uasz.sn.maquette_backend.repository.MaquetteRepository;
@@ -31,6 +29,10 @@ public class MaquetteServiceImpl implements MaquetteService {
     @Autowired
     private UERepository ueRepository;
 
+    @Autowired
+    private EnseignementService enseignementService;
+
+
     @Override
     public MaquetteDTO ajouterMaquette(MaquetteDTO maquetteDTO) {
         Maquette maquette = MaquetteMapper.INSTANCE.toEntity(maquetteDTO);
@@ -47,12 +49,23 @@ public class MaquetteServiceImpl implements MaquetteService {
         List<UE> ues = ueRepository.findAllById(maquetteDTO.getUesIds());
         maquette.setUes(ues);
 
-
-
         maquette = maquetteRepository.save(maquette);
+
+        // Créer les enseignements pour chaque UE
+        for (UE ue : ues) {
+            for (EC ec : ue.getEcs()) {
+                EnseignementDTO enseignementDTO = new EnseignementDTO();
+                enseignementDTO.setEcId(ec.getId());
+                enseignementDTO.setType("CM"); // Par défaut, vous pouvez ajuster cela
+                enseignementDTO.setClasseId(classe.getId());
+                enseignementDTO.setSemestres(maquetteDTO.getSemestres());
+                enseignementDTO.setFormationId(formation.getId());
+                enseignementService.creerEnseignement(enseignementDTO);
+            }
+        }
+
         return MaquetteMapper.INSTANCE.toDto(maquette);
     }
-
     @Override
     public MaquetteDTO modifierMaquette(Long id, MaquetteDTO maquetteDTO) {
         Maquette maquette = maquetteRepository.findById(id)
