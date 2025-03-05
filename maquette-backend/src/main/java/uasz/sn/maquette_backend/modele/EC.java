@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,4 +32,8 @@ public class EC {
     @ManyToOne
     @JoinColumn(name = "ue_id")
     private UE ue;
+
+    @OneToMany(mappedBy = "ec", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<Enseignement> enseignements;
 }
