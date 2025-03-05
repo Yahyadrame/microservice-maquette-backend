@@ -15,14 +15,12 @@ public class Enseignement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @ManyToOne
     @JoinColumn(name = "ec_id", nullable = false)
     private EC ec;
 
     @Column(nullable = false)
     private String type; // CM, TD, TP
-
 
     @ManyToOne
     @JoinColumn(name = "classe_id", nullable = false)
@@ -33,7 +31,10 @@ public class Enseignement {
 
     @ManyToOne
     @JoinColumn(name = "formation_id", nullable = false)
-    private Formation formation;
+    private Formation formation; // Assurez-vous que c'est bien Formation et non Classe
 
-
+    // Ajoutez cette méthode si elle n'existe pas
+    public Formation getFormation() {
+        return formation;
+    }
 }
