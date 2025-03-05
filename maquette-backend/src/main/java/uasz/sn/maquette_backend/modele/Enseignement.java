@@ -15,9 +15,6 @@ public class Enseignement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id", nullable = false)
-    private Utilisateur utilisateur;
 
     @ManyToOne
     @JoinColumn(name = "ec_id", nullable = false)
@@ -26,7 +23,6 @@ public class Enseignement {
     @Column(nullable = false)
     private String type; // CM, TD, TP
 
-    private boolean validationChef = false;
 
     @ManyToOne
     @JoinColumn(name = "classe_id", nullable = false)
@@ -35,8 +31,9 @@ public class Enseignement {
     @Column(nullable = false)
     private String semestres;
 
-    // Ajout de la méthode isValide()
-    public boolean isValide() {
-        return validationChef;
-    }
+    @ManyToOne
+    @JoinColumn(name = "formation_id", nullable = false)
+    private Classe formation;
+
+
 }
