@@ -84,4 +84,44 @@ public class EnseignementServiceImpl implements EnseignementService {
                 .map(enseignementMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+     //afiiche en fonction de l'id de la classe
+     @Override
+     public List<EnseignementDTO> getEnseignementsByClasseId(Long classeId) {
+         // Récupération de la classe par son ID
+         Classe classe = classeRepository.findById(classeId)
+                 .orElseThrow(() -> new IllegalArgumentException("Classe non trouvée avec l'ID : " + classeId));
+
+         // Récupération des enseignements liés à cette classe
+         List<Enseignement> enseignements = enseignementRepository.findByClasse(classe);
+
+         // Retourner la liste des enseignements en tant que DTO
+         return enseignements.stream()
+                 .map(enseignement -> {
+                     EnseignementDTO dto = enseignementMapper.toDto(enseignement);
+
+                     // Récupérer la formation associée à l'enseignement et ajouter son nom
+                     Formation formation = enseignement.getFormation(); // Assurez-vous que "getFormation" est implémenté
+                     if (formation != null) {
+                         dto.setFormationNom(formation.getNom()); // Ajouter le nom de la formation
+                     }
+
+                     // Récupérer l'EC associé à l'enseignement et ajouter son libellé
+                     EC ec = enseignement.getEc();  // Assurez-vous que "getEc" est implémenté
+                     if (ec != null) {
+                         dto.setEcLibelle(ec.getLibelle());  // Ajouter le libellé de l'EC
+                     }
+
+                     // Récupérer la classe associée à l'enseignement et ajouter son nom
+                     if (classe != null) {
+                         dto.setClasseNom(classe.getNom());  // Ajouter le nom de la classe
+                     }
+
+                     return dto;
+                 })
+                 .collect(Collectors.toList());
+     }
+
+
 }
+
