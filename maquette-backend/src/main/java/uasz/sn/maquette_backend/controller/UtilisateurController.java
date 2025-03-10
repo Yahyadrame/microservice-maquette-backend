@@ -7,7 +7,7 @@ import uasz.sn.maquette_backend.service.UtilisateurServiceImpl;
 
 @RestController
 @RequestMapping("/api/utilisateurs")
-@CrossOrigin(origins = "http://localhost:3000") // Si le frontend tourne sur un autre port
+@CrossOrigin(origins = "http://localhost:3001") // Si le frontend tourne sur un autre port
 public class UtilisateurController {
 
     @Autowired

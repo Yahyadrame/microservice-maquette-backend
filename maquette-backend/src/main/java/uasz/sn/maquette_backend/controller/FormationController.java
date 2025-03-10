@@ -9,8 +9,9 @@ import uasz.sn.maquette_backend.service.FormationService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3001", allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+// Si le frontend tourne sur un autre port
 @RequestMapping("/api/formations")
-@CrossOrigin(origins = "http://localhost:3000") // Si le frontend tourne sur un autre port
 public class FormationController {
 
     @Autowired

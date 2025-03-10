@@ -10,7 +10,7 @@ import uasz.sn.maquette_backend.service.UEService;
 import java.util.List;
 @RestController
 @RequestMapping("/api/ues")
-@CrossOrigin(origins = "http://localhost:3000") // Si le frontend tourne sur un autre port
+@CrossOrigin(origins = "http://localhost:3001") // Si le frontend tourne sur un autre port
 public class UEController {
 
     @Autowired

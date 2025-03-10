@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/classes")
-@CrossOrigin(origins = "http://localhost:3000") // Si le frontend tourne sur un autre port
+@CrossOrigin(origins = "http://localhost:3001") // Si le frontend tourne sur un autre port
 public class ClasseController {
 
     @Autowired
