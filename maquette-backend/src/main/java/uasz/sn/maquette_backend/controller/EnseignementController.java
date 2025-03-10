@@ -29,4 +29,12 @@ public class EnseignementController {
         List<EnseignementDTO> enseignements = enseignementService.getAllEnseignements();
         return ResponseEntity.ok(enseignements);
     }
+
+    // Récupérer les enseignements par ID de la classe
+    @GetMapping("/classe/{classeId}")
+    public ResponseEntity<List<EnseignementDTO>> getEnseignementsByClasseId(@PathVariable Long classeId) {
+        List<EnseignementDTO> enseignements = enseignementService.getEnseignementsByClasseId(classeId);
+        return ResponseEntity.ok(enseignements);
+    }
+
 }

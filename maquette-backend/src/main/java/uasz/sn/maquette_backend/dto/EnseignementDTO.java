@@ -10,4 +10,7 @@ public class EnseignementDTO {
     private Long classeId;
     private String semestres;
     private Long formationId;
+    private String formationNom; // Ajouter un champ pour le nom de la formation
+    private String ecLibelle;    // Libellé de l'EC
+    private String classeNom;    // Nom de la classe
 }
